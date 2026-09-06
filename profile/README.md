@@ -6,17 +6,16 @@
 
 Interlock is a machine-to-machine authority layer for AI agents and autonomous workloads.
 
-Agents authenticate using **SPIFFE/SPIRE workload identity** and request authority to proceed through **OAuth**. Interlock independently decides whether an action to access a resource may proceed and returns a **short-lived, cryptographically signed decision**.
+Agents authenticate using **X.509/SPIFFE/OAuth/API-key identity** and request authority to proceed through **OAuth**. Interlock independently decides whether an action to access a resource may proceed and returns a **short-lived, cryptographically signed decision**.
 
 Designed for:
 
 * AI agents and autonomous workloads
 * Machine-to-machine authorization
-* Shared-resource coordination
-* Zero-trust architectures
+* Shared-resource conflict prevention
 * Independently verifiable decisions
 
-Built on **SPIFFE, SPIRE, OAuth and open security standards**.
+Built on **PKI, SPIFFE, OAuth and open security standards**.
 
 ## Coming soon
 
