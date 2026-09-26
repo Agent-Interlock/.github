@@ -4,7 +4,7 @@
 
 > Identity says who. Interlock says when.
 
-`X.509` · `SPIFFE` · `OAuth 2.0` · `API key`
+`X.509` · `SPIFFE` · `OAuth 2.0` · `JWT` · `MCP`
 
 Status: **Pending General Availability**
 
@@ -55,25 +55,6 @@ the same records, with no single arbiter they all trust and all actually call.
 | The holder is a session or a random token, not a proven identity. | Agents have already collided, and a customer saw the result. |
 | Leaves no signed record another system can verify. Building one means running your own lock service and distributing its keys. | You need proof of which agent was allowed to act, on what and when. |
 
-## How it works
-
-Identity and authority are separate chains of trust. Interlock adds the second.
-
-```mermaid
-sequenceDiagram
-    autonumber
-    participant A as Agent
-    participant I as Interlock
-    participant R as Receiving system
-
-    A->>I: Signed authority request, authenticated
-    Note over I: Locks a hold
-    I->>A: Signed authority GRANT, WAIT or DENY
-    A->>R: Action + authority grant
-    Note over R: Verifies the grant offline<br/>against Interlock's JWKS
-    R->>I: Signed confirmation of receipt
-    Note over I: Unlocks the hold
-```
 
 ### Who is asking
 
@@ -100,19 +81,6 @@ strength of the binding is recorded.
 
 While a grant holds, any other agent asking for the same limited resources waits or is refused.
 
-### Verifying a grant
-
-The receiving system verifies the grant itself. Interlock is not called at action time, and the
-action runs directly between your systems.
-
-- Signature checks against Interlock's published keys (JWKS). Signing is `ES256` or `RS256`.
-- `typ` is `interlock-authority+jwt`. Every Interlock JWT is explicitly typed (RFC 8725), so one
-  kind cannot stand in for another.
-- `cnf` is always present and binds the grant to the asker: `x5t#S256` for a client certificate
-  (RFC 8705), `jkt` for a published key (RFC 7638), or `kid` for a registered secret. A grant that
-  leaks is a grant that fails.
-- `exp` is seconds to minutes. A long-lived grant is a booking, which is a different product.
-
 ### Closed loop, not grant and forget
 
 A grant locks every resource on the route together. The lock is released only when the receiving
@@ -120,15 +88,6 @@ side confirms receipt back to Interlock — the final receiver by default, or ea
 clears. No agent frees a resource for itself. If no confirmation arrives, the hold stands and an
 operator is alerted; a timed release is your choice, never the default.
 
-## Interface
-
-- HTTPS and JSON, specified in OpenAPI.
-- Every request and response body is signed as a JWS.
-- Non-public calls carry an OAuth 2.0 access token bound to the caller's credential: a
-  certificate thumbprint over mTLS, or a DPoP key (RFC 9449).
-- Built on published standards only: JWT (RFC 7519), JWS (RFC 7515), JWK thumbprints (RFC 7638),
-  `cnf` (RFC 7800), certificate-bound tokens (RFC 8705), JWT best practice (RFC 8725), X.509,
-  SPIFFE.
 
 ## Coming soon
 
