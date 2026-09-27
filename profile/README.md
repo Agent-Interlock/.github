@@ -100,5 +100,5 @@ The hosted service, documentation, SDKs and integration examples will be publish
 
 ---
 
-© 2026 Agent Interlock · [mcp-interlock.co.uk](https://mcp-interlock.co.uk/) · [Privacy](https://mcp-interlock.co.uk/privacy.html)
+© 2026 Agent Interlock · [agent-interlock.co.uk](https://agent-interlock.co.uk/) · [Privacy](https://agent-interlock.co.uk/privacy.html)
 
