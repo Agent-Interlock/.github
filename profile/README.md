@@ -4,7 +4,7 @@
 
 > Identity says who. Interlock says when.
 
-`X.509` · `SPIFFE` · `OAuth 2.0` · `JWT` · `MCP`
+`X.509` · `OAuth 2.0` · `MCP` · `JWT`
 
 Status: **Pending General Availability**
 
@@ -32,7 +32,7 @@ sides keep the same record.
 
 | Layer | Question | Owner |
 |---|---|---|
-| Identity | Who are you? | **Yours** — PKI, SPIFFE or IdP |
+| Identity | Who are you? | **Yours** — PKI, OAuth or IdP |
 | Access control | Are you allowed to reach this at all? | **Yours** — IAM or policy engine |
 | **Authority** | **Given what is happening right now, may you act?** | **Ours — Agent Interlock** |
 | Workflow | What happens next — which agent, in what order? | **Yours** — orchestrator or agent framework |
@@ -63,7 +63,6 @@ One endpoint accepts all four:
 | Method | How it is proved |
 |---|---|
 | X.509 | A certificate from your own PKI, with or without mTLS |
-| SPIFFE | An SVID from your trust domain, verified against the bundle you publish. Interlock verifies SVIDs; it never issues them |
 | OAuth 2.0 | Client credentials |
 | API key | A registered key |
 
@@ -101,5 +100,5 @@ The hosted service, documentation, SDKs and integration examples will be publish
 
 ---
 
-© 2026 Agent Interlock · [agent-interlock.co.uk](https://agent-interlock.co.uk/) · [Privacy](https://agent-interlock.co.uk/privacy.html)
+© 2026 Agent Interlock · [mcp-interlock.co.uk](https://mcp-interlock.co.uk/) · [Privacy](https://mcp-interlock.co.uk/privacy.html)
 
