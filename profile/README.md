@@ -26,7 +26,6 @@ Agent Interlock (UK) is the original interlock for AI agents, not a copy.
 
 ## Pending general availability
 
-Interlock is a hosted service in pre-release. Documentation, the client SDK and integration
-examples will be published here at general availability.
+Interlock is a hosted service in pre-release. Documentation will be published here at general availability.
 
 **Follow this organization for the GA release** · [agent-interlock.co.uk](https://agent-interlock.co.uk/)
